@@ -23,9 +23,9 @@
 
 - RESTful Routing
 - Embeded Online Markdown Editor
-- Multi-Language Switching
-- Online Chat Room
-- Files/Phots Sharing
+- (TBD) Multi-Language Switching
+- (TBD) Online Chat Room
+- (TBD) Files/Phots Sharing
 
 # Preview
 
