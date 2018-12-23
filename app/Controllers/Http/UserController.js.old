@@ -1,0 +1,64 @@
+'use strict'
+
+/*
+|--------------------------------------------------------------------------
+| Controllers
+|--------------------------------------------------------------------------
+|
+| Controllers are attached to one or many routes and are the common
+| point of interaction between your models, views and any other services
+| you may need.
+|
+| A complete guide on controllers is available here.
+| https://adonisjs.com/docs/4.1/controllers
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| UserController
+|--------------------------------------------------------------------------
+|
+| - create  : Profile Setting Page
+| - update  : Update User Profile
+|
+*/
+
+class UserController {
+	async create ({ params, request, response, view, auth }) {
+		await auth.user.load('profile')
+
+		return view.render('user.profile', { user: auth.user.toJSON() })
+	}
+
+	async update ({ params, request, response, auth, session }) {
+    const { username, email, github, bio, website } = request.all()
+
+    const user = auth.user
+    
+    if (!user.id_verified) {
+      user.merge({ username, email })
+    } else {
+      user.merge({ username })
+    }
+
+    await user.save()
+
+    if (!await user.hasProfile()) {
+      await user.profile().create({ github, bio, website })
+    } else {
+      await user.profile().update({ github, bio, website })
+    }
+
+    session.flash({
+      type: 'success',
+      message: 'Profile successfully updated.'
+    })
+
+    return response.redirect('back')
+	}
+
+	async destroy ({ params, request, response }) {}
+}
+
+module.exports = UserController

@@ -1,0 +1,22 @@
+@layout('layouts.main')
+
+@section('content')
+  @set('pageTitle', "Biulog | " + user.username + " — " + post.title)
+  <section class="section">
+    <div class="container">
+      <h2 class="title">{{{ post.title }}}</h2>
+
+        <div>
+        <a href="{{ route('users.show', { id: user.id }) }}" class="text-muted">
+          <small>{{ '@' + user.username }}</small>
+        </a>
+        </div>
+            
+        <div class="update">
+          <small>{{ user.created_at }}</small>
+        </div>
+
+      <p>{{{ post.md_content ? decodeHtml(post.md_content) : post.content }}}</p>
+    </div>
+  </section>
+@endsection

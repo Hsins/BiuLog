@@ -1,0 +1,16 @@
+@layout('layouts.main')
+
+@section('content')
+  @set('pageTitle', '所有文章 | Explore')
+  {{--
+    Looping over all posts.
+
+    ref: http://edge.adonisjs.com/docs/iteration
+    --}}
+  @each(post in posts, include = 'posts.post-card')
+  @else
+    @component('components.alert', { color: 'info' })
+      <p class="text-sm">There's no post available!</p>
+    @endcomponent
+  @endeach
+@endsection

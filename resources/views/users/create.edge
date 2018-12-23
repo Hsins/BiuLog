@@ -1,0 +1,99 @@
+@layout('layouts.hero')
+
+@section('style')
+{{ style('/src/css/hero.css') }}
+@endsection
+
+@section('content')
+  @set('pageTitle', '註冊 | Register')
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <h3 class="title has-text-white">註冊</h3>
+          <p class="subtitle has-text-white">Register</p>
+          <div class="box">
+            <figure class="avatar">
+              <img src="https://i.imgur.com/CrzyJYz.png" width=128>
+            </figure>
+            <form action=""{{ route('register') }}" method="POST">
+              @!component('component.form.input', {
+                            name: 'username',
+                            placeholder: 'Username',
+                            getErrorFor,
+                            hasErrorFor,
+                            old,
+                            icon: 'fas fa-user'
+                          })
+                          
+              @!component('component.form.input', {
+                            name: 'email',
+                            placeholder: 'Email',
+                            getErrorFor,
+                            hasErrorFor,
+                            old,
+                            icon: 'fas fa-envelope'
+                          })
+                              
+              @!component('component.form.input', {
+                name: 'password',
+                type: 'password',
+                placeholder: 'Password',
+                getErrorFor,
+                hasErrorFor,
+                old,
+                icon: 'fas fa-lock'
+              })
+                {{ csrfField() }}
+                <button class="button is-block is-info is-large is-fullwidth" type="submit">Register</button>
+            </form>
+      </div>
+    </div>
+  </section>
+
+<!--@layout('layouts.main')-->
+
+<!--@section('content')-->
+<!--  @set('pageTitle', '用戶註冊 | User Register')-->
+<!--  <div class="row justify-content-center user">-->
+<!--    <div class="col-md-7">-->
+<!--      <div class="card my-5 px-4 shadow-sm">-->
+<!--        <div class="card-body">-->
+<!--          <h1 class="my-5 display-4 text-center">Register</h1>-->
+<!--          <form action="{{ route('register') }}" method="POST">-->
+<!--            @!component('component.form.input', {-->
+<!--              name: 'username',-->
+<!--              label: 'Username',-->
+<!--              placeholder: 'Pick a username',-->
+<!--              getErrorFor,-->
+<!--              hasErrorFor,-->
+<!--              old-->
+<!--            })-->
+
+<!--            @!component('component.form.input', {-->
+<!--              name: 'email',-->
+<!--              type: 'email',-->
+<!--              label: 'Email',-->
+<!--              placeholder: 'you@example.com',-->
+<!--              getErrorFor,-->
+<!--              hasErrorFor,-->
+<!--              old-->
+<!--            })-->
+
+<!--            @!component('component.form.input', {-->
+<!--              name: 'password',-->
+<!--              type: 'password',-->
+<!--              label: 'Password',-->
+<!--              placeholder: 'Create a password',-->
+<!--              getErrorFor,-->
+<!--              hasErrorFor,-->
+<!--              old-->
+<!--            })-->
+<!--            {{ csrfField() }}-->
+<!--            <button class="btn btn-primary btn-block my-5" type="submit">Create an account</button>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--@endsection-->
+@endsection

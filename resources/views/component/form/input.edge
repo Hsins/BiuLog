@@ -1,0 +1,25 @@
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
+  <label for="{{ name }}"></label>
+  <input type="{{ type || 'text' }}"
+         {{ readonly ? 'readonly' : '' }}
+         class="input {{ hasErrorFor(name) ? 'is-invalid' : '' }}"
+         name="{{ name }}"
+         value="{{ old(name, value) }}"
+         placeholder="{{ placeholder }}">
+    <span class="icon is-small is-left">
+      <i class="{{ icon }}"></i>
+    </span>
+    {{ elIf('<p class="help is-danger">$self</p>', getErrorFor(name), hasErrorFor(name)) }}
+  </p>
+</div>
+<!--<div class="form-group">-->
+<!--  <label for="{{ name }}">{{ label }}</label>-->
+<!--  <input type="{{ type || 'text' }}"-->
+<!--         {{ readonly ? 'readonly' : '' }}-->
+<!--         class="form-control {{ hasErrorFor(name) ? 'is-invalid' : '' }}"-->
+<!--         name="{{ name }}"-->
+<!--         value="{{ old(name, value) }}"-->
+<!--         placeholder="{{ placeholder }}">-->
+<!--  {{ elIf('<div class="invalid-feedback">$self</div>', getErrorFor(name), hasErrorFor(name)) }}-->
+<!--</div>-->
